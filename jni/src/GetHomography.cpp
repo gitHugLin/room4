@@ -20,7 +20,7 @@ GetHomography::GetHomography(Mat& srcImage,Mat& dstImage)
     assert(dstImage.channels() == 1);
 
     if(srcImage.size().width*srcImage.size().height < 5500000)
-        m_patch.createPatch(15,2,16,21);
+        m_patch.createPatch(15,3,16,21);
     else
         //m_patch.createPatch(15,2,16,31);
         m_patch.createPatch(20,4,16,31);
