@@ -1,0 +1,5 @@
+#！/bin/bash
+/opt/android-ndk-linux/android-ndk-r10e/ndk-build
+adb push libs/armeabi/libMFDenoise.so /system/lib
+adb shell stop media
+adb shell start media
