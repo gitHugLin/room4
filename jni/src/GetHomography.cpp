@@ -4,7 +4,7 @@
 
 #include "include/GetHomography.h"
 
-
+#define _PYRDOWN_
 
 GetHomography::~GetHomography()
 {
@@ -23,6 +23,7 @@ GetHomography::GetHomography(Mat& srcImage,Mat& dstImage)
         m_patch.createPatch(15,3,16,21);
     else
         //m_patch.createPatch(15,2,16,31);
+        // m_patch.createPatch(20,4,8,15);
         m_patch.createPatch(20,4,16,31);
 
     m_queryPoints.clear();
@@ -121,10 +122,12 @@ bool GetHomography::detectPoints(const int _patchSize,const int keyPointThread,c
                     Mat roiQueryArea(queryPattern,ROI);
                     Mat roiTrainArea(trainPattern,ROI);
 
+                    // #ifdef _PYRDOWN_
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiTrainArea,roiTrainArea);
                     pyrDown(roiTrainArea,roiTrainArea);
+                    // #endif
 
                     m_patch.setPatch(Origin,roiQueryArea,roiTrainArea);
 
@@ -172,10 +175,12 @@ bool GetHomography::detectPoints(const int _patchSize,const int keyPointThread,c
                     Mat roiQueryArea(queryPattern,ROI);
                     Mat roiTrainArea(trainPattern,ROI);
 
+                    // #ifdef _PYRDOWN_
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiTrainArea,roiTrainArea);
                     pyrDown(roiTrainArea,roiTrainArea);
+                    // #endif
 
                     m_patch.setPatch(Origin,roiQueryArea,roiTrainArea);
 
@@ -223,10 +228,12 @@ bool GetHomography::detectPoints(const int _patchSize,const int keyPointThread,c
                     Mat roiQueryArea(queryPattern,ROI);
                     Mat roiTrainArea(trainPattern,ROI);
 
+                    // #ifdef _PYRDOWN_
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiTrainArea,roiTrainArea);
                     pyrDown(roiTrainArea,roiTrainArea);
+                    // #endif
 
                     m_patch.setPatch(Origin,roiQueryArea,roiTrainArea);
 
@@ -276,10 +283,12 @@ bool GetHomography::detectPoints(const int _patchSize,const int keyPointThread,c
                     Mat roiQueryArea(queryPattern,ROI);
                     Mat roiTrainArea(trainPattern,ROI);
 
+                    // #ifdef _PYRDOWN_
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiTrainArea,roiTrainArea);
                     pyrDown(roiTrainArea,roiTrainArea);
+                    // #endif
 
                     m_patch.setPatch(Origin,roiQueryArea,roiTrainArea);
 
