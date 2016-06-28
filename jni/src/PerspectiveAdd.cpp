@@ -107,17 +107,17 @@ int PerspectiveAdd::Progress(Mat & _outMat, int* targetAddr, int mode)
 	}
 	workEnd("COPY FRAME");
 */
-	if (1) {
+#if 0
+	LOGE("open imwrite in Progress,save image!");
 	char filename[100];
 	for (int i=0; i<6; i++) {
 		sprintf(filename, "/data/local/%d.jpg", i);
 		imwrite(filename, m_grays[i]);
-		LOGE("open imwrite in Progress,save image!");
 		//Mat y(mHeight, mWidth, CV_8UC1, (void*)(mCameraGLTexImage[i]->mBufferAddr));
 		//sprintf(filename, "/data/local/%d%d.jpg", i, i);
 		//imwrite(filename, y);
 	}
-	}
+#endif
 
 	LOGD("%s(%d)-<%s>",__FILE__, __LINE__, __FUNCTION__);
 
