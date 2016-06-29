@@ -110,12 +110,21 @@ int PerspectiveAdd::Progress(Mat & _outMat, int* targetAddr, int mode)
 #if 0
 	LOGE("open imwrite in Progress,save image!");
 	char filename[100];
-	for (int i=0; i<6; i++) {
-		sprintf(filename, "/data/local/%d.jpg", i);
-		imwrite(filename, m_grays[i]);
+	for (int i = 0; i < 6; i++) {
+		//sprintf(filename, "/data/local/%d.jpg", i);
+		//imwrite(filename, m_grays[i]);
 		//Mat y(mHeight, mWidth, CV_8UC1, (void*)(mCameraGLTexImage[i]->mBufferAddr));
-		//sprintf(filename, "/data/local/%d%d.jpg", i, i);
+		sprintf(filename, "/data/local/%d%d.jpg", i, i);
 		//imwrite(filename, y);
+		vector<int> compression_params;
+        compression_params.push_back(IMWRITE_JPEG_QUALITY);
+        compression_params.push_back(100);
+		//Mat pic;
+		//cvtColor(m_grays[i],pic,CV_GRAY2BGR);
+        bool ret = imwrite(filename, m_grays[i], compression_params);
+		if(ret == false) {
+			LOGE("Error : imwrite picture failed !");
+		}
 	}
 #endif
 
@@ -159,16 +168,16 @@ int PerspectiveAdd::Progress(Mat & _outMat, int* targetAddr, int mode)
             }
             else if(homIntMatVec[i].index == -1)
             {
-                /* memcpy(fhom.Homography,prtHomography, sizeof(prtHomography));
-               HomVec.push_back(fhom);*/
-               LOGE("Homography not found.");
+            	/* memcpy(fhom.Homography,prtHomography, sizeof(prtHomography));
+                HomVec.push_back(fhom);*/
+                LOGE("Homography not found.");
                 _outMat = NULL;//m_images[3];
                 return -1;
             }
         }
     }
 
-	for (int i=0; i<6; i++) {
+	for (int i = 0; i < 6; i++) {
 		LOGE("Homography = %d",i);
 		for(int j = 0;j < 9;j++) {
 			LOGE("Mat = %lf",HomVec[i].Homography[j]);

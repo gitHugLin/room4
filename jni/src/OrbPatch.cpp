@@ -142,7 +142,7 @@ void OrbPatch::knnMatch(void)
         const DMatch& betterMatch = knnMatches[matchIndex][1];
 
         //bestMatch.distance = 25
-        if(betterMatch.distance - bestMatch.distance >  5 && bestMatch.distance < 25)
+        if(betterMatch.distance - bestMatch.distance > 5 && bestMatch.distance < 25)
         {
             double dErrorY = qKeypoints[bestMatch.queryIdx].pt.y
                              - tKeypoints[bestMatch.trainIdx].pt.y;

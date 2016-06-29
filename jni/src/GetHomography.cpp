@@ -23,8 +23,7 @@ GetHomography::GetHomography(Mat& srcImage,Mat& dstImage)
         m_patch.createPatch(15,3,16,21);
     else
         //m_patch.createPatch(15,2,16,31);
-        // m_patch.createPatch(20,4,8,15);
-        m_patch.createPatch(20,4,16,31);
+        m_patch.createPatch(20,3,21,31);
 
     m_queryPoints.clear();
     m_trainPoints.clear();
@@ -122,12 +121,12 @@ bool GetHomography::detectPoints(const int _patchSize,const int keyPointThread,c
                     Mat roiQueryArea(queryPattern,ROI);
                     Mat roiTrainArea(trainPattern,ROI);
 
-                    // #ifdef _PYRDOWN_
+                    #ifdef _PYRDOWN_
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiTrainArea,roiTrainArea);
                     pyrDown(roiTrainArea,roiTrainArea);
-                    // #endif
+                    #endif
 
                     m_patch.setPatch(Origin,roiQueryArea,roiTrainArea);
 
@@ -175,12 +174,12 @@ bool GetHomography::detectPoints(const int _patchSize,const int keyPointThread,c
                     Mat roiQueryArea(queryPattern,ROI);
                     Mat roiTrainArea(trainPattern,ROI);
 
-                    // #ifdef _PYRDOWN_
+                    #ifdef _PYRDOWN_
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiTrainArea,roiTrainArea);
                     pyrDown(roiTrainArea,roiTrainArea);
-                    // #endif
+                    #endif
 
                     m_patch.setPatch(Origin,roiQueryArea,roiTrainArea);
 
@@ -228,12 +227,12 @@ bool GetHomography::detectPoints(const int _patchSize,const int keyPointThread,c
                     Mat roiQueryArea(queryPattern,ROI);
                     Mat roiTrainArea(trainPattern,ROI);
 
-                    // #ifdef _PYRDOWN_
+                    #ifdef _PYRDOWN_
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiTrainArea,roiTrainArea);
                     pyrDown(roiTrainArea,roiTrainArea);
-                    // #endif
+                    #endif
 
                     m_patch.setPatch(Origin,roiQueryArea,roiTrainArea);
 
@@ -283,12 +282,12 @@ bool GetHomography::detectPoints(const int _patchSize,const int keyPointThread,c
                     Mat roiQueryArea(queryPattern,ROI);
                     Mat roiTrainArea(trainPattern,ROI);
 
-                    // #ifdef _PYRDOWN_
+                    #ifdef _PYRDOWN_
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiQueryArea,roiQueryArea);
                     pyrDown(roiTrainArea,roiTrainArea);
                     pyrDown(roiTrainArea,roiTrainArea);
-                    // #endif
+                    #endif
 
                     m_patch.setPatch(Origin,roiQueryArea,roiTrainArea);
 
@@ -352,7 +351,7 @@ Mat GetHomography::getHomography(double reprojectionThreshold)
         LOGE("findHomography time count!");
         //vector<uchar> inliersMask(m_trainPoints.size());
         //LOGE("total num of Points = %d",m_trainPoints.size());
-        Mat homography = findHomography(m_queryPoints,m_trainPoints, HomoMethod, reprojectionThreshold, noArray(), 2000, 0.995);
+        Mat homography = findHomography(m_queryPoints,m_trainPoints, HomoMethod, reprojectionThreshold, noArray(), 2000, 0.99995);
         //Mat homography = findHomography( m_queryPoints, m_trainPoints, noArray(),method,reprojectionThreshold);
         //需要转置处理，因为GLSL里默认是以列主序读取数组的，而opencv默认的是行主序
         m_Homography = homography.t();
