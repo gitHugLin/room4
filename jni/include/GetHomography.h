@@ -31,7 +31,7 @@ public:
     bool setMode(int homoMethod = RANSAC);
 private:
     //_patchSize = 440,const int keyPointThread = 20  //stable1
-    bool detectPoints(const int _patchSize = 400,const int keyPointThread = 15
+    bool detectPoints(const int _patchSize = 400,const int keyPointThread = 10
             ,const int robEdgeThreshold = 21 );
     void savePoints(vector<Point2f>& _queryPoints,vector<Point2f>& _trainPoints);
 

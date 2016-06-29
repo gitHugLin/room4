@@ -38,7 +38,7 @@ void OrbPatch::createPatch(const int nFeatures,const int nlevels,const int edgeT
     //m_detector = ORB::create(nFeatures,1.15,2,9,0,2,ORB::HARRIS_SCORE,31,5); //stable1 580ms
     //m_detector = ORB::create(nFeatures,1.2,nlevels,6,0,2,ORB::HARRIS_SCORE,31,10);
 //    m_detector = ORB::create(nFeatures,1.15,nlevels,6,0,2,ORB::HARRIS_SCORE,21,5);
-    m_detector = ORB::create(nFeatures,1.15,nlevels,edgeThreshold,0,2,ORB::HARRIS_SCORE,_descriptorSize,10);
+    m_detector = ORB::create(nFeatures,1.05,nlevels,edgeThreshold,0,2,ORB::HARRIS_SCORE,_descriptorSize,10);
     if(!m_detector)
         assert("Can not create Detector of ORB!");
     m_matcher = DescriptorMatcher::create("BruteForce-Hamming");
